@@ -35,10 +35,7 @@ class SpringBootApiApplicationTests {
 				+ password + "\"}";
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/auth/register")
 						.content(body)
-						.contentType(MediaType.APPLICATION_JSON)
-						.header("Accept", "*/*")
-						.header("Accept-Encoding", "gzip, deflate, br")
-						.header("Connection", "keep-alive"))
+						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
 		String response = result.getResponse().getContentAsString();
 		response = response.replace("{\"token\":\"","");
@@ -67,10 +64,7 @@ class SpringBootApiApplicationTests {
 				+ password + "\"}";
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/auth/login")
 						.content(body)
-						.contentType(MediaType.APPLICATION_JSON)
-						.header("Accept", "*/*")
-						.header("Accept-Encoding", "gzip, deflate, br")
-						.header("Connection", "keep-alive"))
+						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
 		String response = result.getResponse().getContentAsString();
 		response = response.replace("{\"token\":\"","");
@@ -88,10 +82,7 @@ class SpringBootApiApplicationTests {
 				+ password + "\"}";
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/auth/register")
 						.content(body)
-						.contentType(MediaType.APPLICATION_JSON)
-						.header("Accept", "*/*")
-						.header("Accept-Encoding", "gzip, deflate, br")
-						.header("Connection", "keep-alive"))
+						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
 		String response = result.getResponse().getContentAsString();
 		response = response.replace("{\"token\":\"","");
@@ -109,10 +100,7 @@ class SpringBootApiApplicationTests {
 				+ password + "\"}";
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/auth/register")
 						.content(body)
-						.contentType(MediaType.APPLICATION_JSON)
-						.header("Accept", "*/*")
-						.header("Accept-Encoding", "gzip, deflate, br")
-						.header("Connection", "keep-alive"))
+						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andReturn();
 		String response = result.getResponse().getContentAsString();
 		response = response.replace("{\"token\":\"","");
