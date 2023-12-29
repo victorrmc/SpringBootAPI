@@ -1,12 +1,15 @@
 package com.bitboxer2.SpringBootAPI.service;
 
+import com.bitboxer2.SpringBootAPI.JWT.JwtService;
+import com.bitboxer2.SpringBootAPI.User.IUserRepository;
 import com.bitboxer2.SpringBootAPI.dto.ProductDTO;
-import com.bitboxer2.SpringBootAPI.model.PriceReduction;
+import com.bitboxer2.SpringBootAPI.model.*;
 import com.bitboxer2.SpringBootAPI.model.Product;
-import com.bitboxer2.SpringBootAPI.model.Product;
-import com.bitboxer2.SpringBootAPI.model.Supplier;
+import com.bitboxer2.SpringBootAPI.repository.IDesactivatedRepository;
 import com.bitboxer2.SpringBootAPI.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,12 +17,20 @@ import java.util.*;
 public class ProductService implements IProductService{
     @Autowired
     private IProductRepository repoProduct;
+    @Autowired
+    private IUserRepository userRepository;
+    @Autowired
+    private IDesactivatedRepository desactivatedRepository;
+    @Autowired
+    private JwtService jwtService;
     @Override
     public void createProduct(Product product) {
         if(product.getState() == null){
             product.setState(Product.ProductState.ACTIVE);
         }
         product.setCreationDate(new Date());
+        String usernameFromToken = getNameFromRequest();
+        product.setUser(userRepository.findByUsername(usernameFromToken).orElseThrow());
         repoProduct.save(product);
     }
     @Override
@@ -55,11 +66,17 @@ public class ProductService implements IProductService{
     @Override
     public void desactivateProduct(Long id, String reason) throws Exception {
         Product productBD = this.findProduct(id);
+        String usernameFromToken = getNameFromRequest();
+        System.out.println(usernameFromToken);
         if(productBD.getState() == Product.ProductState.DISCONTINUED){
             throw new Exception("The product is already DISCONTINUED");
         }else{
             productBD.setState(Product.ProductState.DISCONTINUED);
-            this.editProduct(productBD);
+            repoProduct.save(productBD);
+            Desactivated desactivated = new Desactivated();
+            desactivated.setReason(reason);
+            desactivated.setUser(userRepository.findByUsername(usernameFromToken).orElseThrow());
+            desactivatedRepository.save(desactivated);
         }
     }
 
@@ -73,5 +90,12 @@ public class ProductService implements IProductService{
     public void deleteProduct(Long id) {
         repoProduct.deleteById(id);
     }
-
+    private String getNameFromRequest() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            String name = authentication.getName();
+            return name;
+        }
+        return null;
+    }
 }

@@ -22,6 +22,6 @@ public class ProductDTO {
         this.price = pro.getPrice();
         this.state = pro.getState();
         this.creationDate = pro.getCreationDate();
-        this.creator = pro.getCreator();
+        this.creator = pro.getUser().getUsername();
     }
 }

@@ -1,6 +1,6 @@
 package com.bitboxer2.SpringBootAPI.Config;
 
-import com.bitboxer2.SpringBootAPI.User.UserRepository;
+import com.bitboxer2.SpringBootAPI.User.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {

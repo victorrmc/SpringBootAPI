@@ -39,5 +39,10 @@ public class ProductController {
         productService.editProduct(product);
         return "The Product was edited correctly";
     }
+    @PutMapping("/products/desactivate/{id}")
+    public String desactivateProduct(@PathVariable Long id, @RequestBody String reason) throws Exception {
+        productService.desactivateProduct(id, reason);
+        return "The Product was desactivated correctly";
+    }
 
 }

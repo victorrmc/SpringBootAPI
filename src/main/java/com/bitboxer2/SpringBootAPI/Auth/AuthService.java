@@ -1,9 +1,9 @@
 package com.bitboxer2.SpringBootAPI.Auth;
 
 import com.bitboxer2.SpringBootAPI.JWT.JwtService;
+import com.bitboxer2.SpringBootAPI.User.IUserRepository;
 import com.bitboxer2.SpringBootAPI.User.Role;
 import com.bitboxer2.SpringBootAPI.User.User;
-import com.bitboxer2.SpringBootAPI.User.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;

@@ -1,5 +1,6 @@
 package com.bitboxer2.SpringBootAPI.model;
 
+import com.bitboxer2.SpringBootAPI.User.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -37,7 +38,9 @@ public class Product {
     @JoinColumn(name="priceReductionFK", referencedColumnName="priceReductionId")
     private PriceReduction priceReduction;
     private Date creationDate;
-    private String creator;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User user;
 
 
 }
