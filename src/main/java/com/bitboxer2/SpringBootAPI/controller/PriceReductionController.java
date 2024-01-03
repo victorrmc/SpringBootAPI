@@ -3,11 +3,13 @@ package com.bitboxer2.SpringBootAPI.controller;
 
 import com.bitboxer2.SpringBootAPI.model.PriceReduction;
 import com.bitboxer2.SpringBootAPI.service.IPriceReductionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
         import java.util.*;
 @RestController
+@RequiredArgsConstructor
 @CrossOrigin( origins = {"http://localhost:5173"})
 public class PriceReductionController {
 
