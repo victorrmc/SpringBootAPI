@@ -27,4 +27,9 @@ public class UserService  implements IUserService{
     public void deleteUser(Long id) {
         repoUser.deleteById(id);
     }
+
+    @Override
+    public User findUser(Long id) {
+        return repoUser.findById(id).orElse(null);
+    }
 }

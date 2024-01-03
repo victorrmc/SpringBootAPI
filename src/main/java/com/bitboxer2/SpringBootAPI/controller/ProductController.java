@@ -38,7 +38,7 @@ public class ProductController {
         productService.deleteProduct(id);
         return "The Product was deleted correctly";
     }
-
+    @CrossOrigin(origins = {"http://localhost:5173"})
     @PutMapping("edit")
     public String editProduct(@RequestBody Product product) throws Exception {
         productService.editProduct(product);

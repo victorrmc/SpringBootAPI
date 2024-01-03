@@ -2,6 +2,7 @@ package com.bitboxer2.SpringBootAPI.service;
 
 import com.bitboxer2.SpringBootAPI.JWT.JwtService;
 import com.bitboxer2.SpringBootAPI.User.IUserRepository;
+import com.bitboxer2.SpringBootAPI.User.IUserService;
 import com.bitboxer2.SpringBootAPI.dto.ProductDTO;
 import com.bitboxer2.SpringBootAPI.model.*;
 import com.bitboxer2.SpringBootAPI.model.Product;
@@ -19,6 +20,8 @@ public class ProductService implements IProductService{
     private IProductRepository repoProduct;
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private IUserService userService;
     @Autowired
     private IDesactivatedRepository desactivatedRepository;
     @Autowired
@@ -50,12 +53,15 @@ public class ProductService implements IProductService{
         Product productBD = this.findProduct(product.getProductId());
         Set<Long> uniqueIds = new HashSet<>();
         if(productBD.getState() == Product.ProductState.ACTIVE){
-            for (Supplier supplier : product.getSupplierList()){
-                Long productId = supplier.getSupplierId();
-                if (!uniqueIds.add(productId)) {
-                    throw new Exception("The product already has a Supplier associated with this ID." + productId);
+            if(product.getSupplierList() != null){
+                for (Supplier supplier : product.getSupplierList()){
+                    Long productId = supplier.getSupplierId();
+                    if (!uniqueIds.add(productId)) {
+                        throw new Exception("The product already has a Supplier associated with this ID." + productId);
+                    }
                 }
             }
+            //product.setUser(userService.findUser(product.getUser().getId()));
             repoProduct.save(product);
         }else{
             throw new Exception("The product is DISCONTINUED and can't be edited.");
