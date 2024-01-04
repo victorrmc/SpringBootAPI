@@ -26,7 +26,7 @@ public class ProductController {
         return productService.findProduct(id);
     }
 
-    @CrossOrigin(origins = {"http://localhost:5173"})
+
     @PostMapping("create")
     public String createProduct(@RequestBody Product product){
         productService.createProduct(product);
@@ -38,12 +38,13 @@ public class ProductController {
         productService.deleteProduct(id);
         return "The Product was deleted correctly";
     }
-    @CrossOrigin(origins = {"http://localhost:5173"})
+
     @PutMapping("edit")
     public String editProduct(@RequestBody Product product) throws Exception {
         productService.editProduct(product);
         return "The Product was edited correctly";
     }
+
     @PutMapping("desactivate/{id}")
     public String desactivateProduct(@PathVariable Long id, @RequestBody String reason) throws Exception {
         productService.desactivateProduct(id, reason);
