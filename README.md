@@ -11,6 +11,9 @@ Authentication with SpringBoot in the application is performed using the token p
 
 Within this repository, you will find a detailed user manual in the `UserManual` folder, guiding you through the functionalities and proper usage of the application.
 
+## Unit Testing 
+The project includes unit tests implemented in JUnit to ensure the robustness and reliability of the codebase
+
 ## Additional Resources
 - Class Diagram: Check the `ClassDiagram` folder for `ClassDiagram.svg`, which is a class diagram.
 - Role Diagram: Find the `RoleDiagram.svg` in the `ClassDiagram` folder, illustrating the role diagram.
