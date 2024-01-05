@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -28,15 +29,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authRequest ->
                     authRequest
                         .requestMatchers("/auth/**").permitAll()
-                            .requestMatchers("/h2-console/**").permitAll()
+                            .requestMatchers("/").permitAll()
+                            .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                         .anyRequest().authenticated()
-                        )
+                        ).headers(headers -> headers.frameOptions().disable())
                 .formLogin(withDefaults())
                 .sessionManagement(sessionManager -> sessionManager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
     }
 }
