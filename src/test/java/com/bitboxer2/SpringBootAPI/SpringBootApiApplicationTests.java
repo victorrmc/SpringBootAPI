@@ -94,7 +94,7 @@ class SpringBootApiApplicationTests {
 	}
 	@Test
 	void createProducts() throws Exception {
-		String username = "prueba@gmail.com";
+		String username = "prueba6@gmail.com";
 		String password = "123456";
 		String body = "{\"username\":\"" + username + "\", \"password\":\""
 				+ password + "\"}";

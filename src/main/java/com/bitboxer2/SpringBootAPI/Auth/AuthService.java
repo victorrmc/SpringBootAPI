@@ -41,4 +41,17 @@ public class AuthService {
 
         return AuthResponse.builder().token(jwtService.getToken(user)).build();
     }
+    public AuthResponse createAdmin() {
+        User user = User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("admin"))
+                .firstname("admin")
+                .lastname("admin")
+                .country("admin")
+                .role(Role.ADMIN)
+                .build();
+        userRepository.save(user);
+
+        return AuthResponse.builder().token(jwtService.getToken(user)).build();
+    }
 }
