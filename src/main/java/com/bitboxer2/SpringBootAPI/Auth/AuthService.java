@@ -43,8 +43,8 @@ public class AuthService {
     }
     public AuthResponse createAdmin() {
         User user = User.builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin"))
+                .username("admin@gmail.com")
+                .password(passwordEncoder.encode("1"))
                 .firstname("admin")
                 .lastname("admin")
                 .country("admin")
