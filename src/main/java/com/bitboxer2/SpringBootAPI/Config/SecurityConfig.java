@@ -30,7 +30,8 @@ public class SecurityConfig {
                     authRequest
                         .requestMatchers("/auth/**").permitAll()
                             .requestMatchers("/products/delete/**").hasAuthority("ADMIN")
-                            .requestMatchers("/users/**").hasAuthority("ADMIN")
+                            .requestMatchers("/users/create").hasAuthority("ADMIN")
+                            .requestMatchers("/users/delete/**").hasAuthority("ADMIN")
                             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                         .anyRequest().authenticated()
                         ).headers(headers -> headers.frameOptions().disable())

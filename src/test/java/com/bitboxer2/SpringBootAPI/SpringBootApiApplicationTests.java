@@ -157,7 +157,7 @@ class SpringBootApiApplicationTests {
 				.andExpect(status().is4xxClientError());
 	}
 	@Test
-	void userCannotCreateOrUpdateOrDeleteUsers() throws Exception {
+	void userCannotCreateOrDeleteUsersAndCanGetUsers() throws Exception {
 		String username = "prueba8@gmail.com";
 		String password = "123456";
 		String body = "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}";
@@ -173,7 +173,7 @@ class SpringBootApiApplicationTests {
 		mockMvc.perform(MockMvcRequestBuilders.get("/users/get")
 						.contentType(MediaType.APPLICATION_JSON)
 						.header("Authorization", "Bearer " + token))
-				.andExpect(status().is4xxClientError());
+				.andExpect(status().isOk()).andReturn();
 
 		String id = "6";
 		String username2 = "prueba";
@@ -215,8 +215,8 @@ class SpringBootApiApplicationTests {
 						.header("Authorization", "Bearer " + token))
 				.andExpect(status().isOk()).andReturn();
 
-		String id = "6";
-		String username2 = "prueba";
+		String id = "12";
+		String username2 = "pruebatest";
 		String password2 = "1";
 		String role = "ADMIN";
 		String bodyPost = "{\"id\":\"" + id +
@@ -230,12 +230,12 @@ class SpringBootApiApplicationTests {
 						.header("Authorization", "Bearer " + token))
 				.andExpect(status().isOk()).andReturn();
 
-		mockMvc.perform(MockMvcRequestBuilders.delete("/users/delete/6")
+		mockMvc.perform(MockMvcRequestBuilders.delete("/users/delete/"+id)
 						.contentType(MediaType.APPLICATION_JSON)
 						.header("Authorization", "Bearer " + token))
 				.andExpect(status().isOk()).andReturn();
 	}
-	//Con admin si puede eliminar producto
+
 	@Test
 	void AdminCanDeleteProduct() throws Exception {
 		String username = "admin@gmail.com";
@@ -254,6 +254,7 @@ class SpringBootApiApplicationTests {
 		String description = "prueba";
 		String bodyPost = "{\"productId\":\"" + id + "\", \"description\":\""
 				+ description + "\"}";
+
 		mockMvc.perform(MockMvcRequestBuilders.post("/products/create")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(bodyPost)
