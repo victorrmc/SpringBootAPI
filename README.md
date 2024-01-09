@@ -7,7 +7,9 @@ The entire project comprises two main parts, with the client-side repository ava
 
 The server-side of this project is implemented as a RESTful API using Spring Boot. The database used is H2, an in-memory database that provides fast and efficient data storage.
 
-Authentication with SpringBoot in the application is performed using the token provided by the Spring Boot API. Additionally, a product CRUD (Create, Read, Update, Delete) is implemented, allowing operations on products by making requests to different API endpoints.
+Authentication with SpringBoot in the application is performed using the token provided by the Spring Boot API. The application includes control of roles, distinguishing between user and admin roles, ensuring distinct permissions for different types of users. 
+
+Additionally, a product CRUD (Create, Read, Update, Delete) is implemented, allowing operations on products by making requests to different API endpoints.
 
 Within this repository, you will find a detailed user manual in the `UserManual` folder, guiding you through the functionalities and proper usage of the application.
 
