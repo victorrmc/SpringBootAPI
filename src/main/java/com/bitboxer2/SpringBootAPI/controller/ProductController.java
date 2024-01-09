@@ -5,6 +5,11 @@ import com.bitboxer2.SpringBootAPI.model.Product;
 import com.bitboxer2.SpringBootAPI.service.IProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
+import org.springframework.context.support.BeanDefinitionDsl;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -33,11 +38,12 @@ public class ProductController {
         return "The Product was created correctly";
     }
 
-    @DeleteMapping("delete/{id}")
-    public String deleteProduct(@PathVariable Long id){
-        productService.deleteProduct(id);
-        return "The Product was deleted correctly";
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+            productService.deleteProduct(id);
+            return "The Product was created correctly";
     }
+
 
     @PutMapping("edit")
     public String editProduct(@RequestBody Product product) throws Exception {

@@ -39,16 +39,16 @@ public class SpringBootApiApplication {
 	) {
 		return args -> {
 
-			System.out.println("Admin token: " + service.createAdmin().getToken());
+			System.out.println("ADMIN token: " + service.createAdmin().getToken());
 
-			var manager = RegisterRequest.builder()
+			var user = RegisterRequest.builder()
 					.username("prueba@gmail.com")
 					.firstname("prueba")
 					.lastname("prueba")
 					.password("1")
 					.role(Role.USER)
 					.build();
-			System.out.println("Manager token: " + service.register(manager).getToken());
+			System.out.println("USER token: " + service.register(user).getToken());
 
 		};
 	}
