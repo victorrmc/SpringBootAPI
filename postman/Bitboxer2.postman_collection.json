@@ -12,6 +12,16 @@
 				{
 					"name": "http://localhost:8080/suppliers/get",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNzA0NDQ2NDkwLCJleHAiOjE3MDQ0NDc5MzB9.pSw1P3IMHbXJjiCkJF2tZDn1sbVl7jrxiTbdIsAzLsY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -62,11 +72,21 @@
 				{
 					"name": "http://localhost:8080/suppliers/create",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNzA0NDQ2NDkwLCJleHAiOjE3MDQ0NDc5MzB9.pSw1P3IMHbXJjiCkJF2tZDn1sbVl7jrxiTbdIsAzLsY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"supplierId\": 1,\r\n    \"name\": \"prueba\",\r\n    \"country\": \"paisPrueba\",\r\n    \"productList\": null\r\n}",
+							"raw": "{\r\n    \"supplierId\": 0,\r\n    \"name\": \"Luigi\",\r\n    \"country\": \"Italia\",\r\n    \"productList\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -125,6 +145,16 @@
 				{
 					"name": "http://localhost:8080/products/get Copy",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIiwicm9sZSI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNzA0Nzg3NzM5LCJleHAiOjE3MDQ3ODkxNzl9.wV9auOpNa3fXkhy8mb48yAkTeiwIxa9RskphuacLAgQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -145,6 +175,16 @@
 				{
 					"name": "http://localhost:8080/products/delete/2",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmEyQGdtYWlsLmNvbSIsInJvbGUiOlt7ImF1dGhvcml0eSI6IlVTRVIifV0sImlhdCI6MTcwNDgwMjY2MywiZXhwIjoxNzA0ODA0MTAzfQ.zKxPeG9CoIoisJsHYBqoN8vPOqrXWJb3HbHiBFHjxww",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -157,7 +197,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/products/delete/4",
+							"raw": "http://localhost:8080/products/delete/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -166,7 +206,7 @@
 							"path": [
 								"products",
 								"delete",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -204,11 +244,21 @@
 				{
 					"name": "create 2",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNzA0MjkyMDg3LCJleHAiOjE3MDQyOTM1Mjd9.MUwTHDI-Kb4TEvofqZu0pogp-3fbxJQRpI_YUaShyYA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productId\":0,\r\n    \"description\": \"prueba\",\r\n    \"price\": 20.00,\r\n    \"supplierList\": [\r\n        {\r\n            \"supplierId\": 1\r\n        }\r\n    ],\r\n    \"priceReduction\": {\r\n        \"priceReductionId\": 1\r\n    },\r\n    \"creator\": \"Victor\"\r\n}",
+							"raw": "{\r\n    \"productId\":0,\r\n    \"description\": \"prueba2\",\r\n    \"price\": 2220.00\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -233,11 +283,21 @@
 				{
 					"name": "edit",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNzA0MzgwNTQwLCJleHAiOjE3MDQzODE5ODB9.-Y2_Wskf4TAL-WlgBTC9mtxs12u7rTXmk8MjIIF1nas",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productId\":1,\r\n    \"description\": \"pruebaeditar\"\r\n}",
+							"raw": "{\r\n    \"productId\": 1,\r\n    \"description\": \"pruebaeditar\",\r\n    \"price\": 3232.0,\r\n    \"creationDate\": \"2023-12-22\"\r\n\r\n} ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -262,11 +322,21 @@
 				{
 					"name": "desactivate",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnViYUBnbWFpbC5jb20iLCJpYXQiOjE3MDM3NzAyNDQsImV4cCI6MTcwMzc3MTY4NH0.45mt7OqDxl1H683ffRS7lKa2xL2CQWeOuDUIjyBlSxE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productId\":1,\r\n    \"description\": \"pruebaeditar\"\r\n}",
+							"raw": "Por que era una prueba",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -292,6 +362,16 @@
 				{
 					"name": "http://localhost:8080/products/find/1",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNzA0Mzc4NzgzLCJleHAiOjE3MDQzODAyMjN9.zw8h67AAZz1tymL9ATQS_bV1NrxbeXeWMr3ezLeWg0I",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -368,11 +448,21 @@
 				{
 					"name": "http://localhost:8080/priceReductions/create Copy 2",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIiwiaWF0IjoxNzA0NDU4NTI2LCJleHAiOjE3MDQ0NTk5NjZ9.3i8SpB6_VYR80FzNe8z14YrveBwTeFdCb_so4b4KFHs",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"priceReductionId\":1,\r\n    \"reducedPrice\": 20.00,\r\n    \"startDate\": \"2023-12-22\",\r\n    \"endDate\": \"2023-12-27\"\r\n}",
+							"raw": "{\r\n    \"priceReductionId\":0,\r\n    \"reducedPrice\": 123.30,\r\n    \"startDate\": \"2024-01-01\",\r\n    \"endDate\": \"2024-12-27\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -430,12 +520,15 @@
 			"item": [
 				{
 					"name": "register",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"pruba@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"lastname\": \"marrero\",\r\n    \"firstname\": \"Victor\",\r\n    \"country\": \"Spain\"\r\n}",
+							"raw": "{\r\n    \"username\":\"prueba2@gmail.com\", \r\n    \"password\":\"1\",\r\n    \"firstname\": \"pr\",\r\n    \"lastname\": \"lastPr\",\r\n    \"country\": \"PrLand\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -464,7 +557,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"pruba@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"lastname\": \"marrero\",\r\n    \"firstname\": \"Victor\",\r\n    \"country\": \"Spain\"\r\n}",
+							"raw": "{\r\n    \"username\": \"prueba@gmail.com\", \r\n    \"password\": \"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -472,7 +565,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/auth/register",
+							"raw": "http://localhost:8080/auth/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -480,7 +573,124 @@
 							"port": "8080",
 							"path": [
 								"auth",
-								"register"
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNzA0Nzk4MDMzLCJleHAiOjE3MDQ3OTk0NzN9.eKPMjHsWPcxsLmqYENJM4Q6lz1Yuw5a9WAOar3wFeBg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNzA0Nzk4MDMzLCJleHAiOjE3MDQ3OTk0NzN9.eKPMjHsWPcxsLmqYENJM4Q6lz1Yuw5a9WAOar3wFeBg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 8,\r\n        \"username\": \"pruebaadmin@gmail.com\",\r\n        \"password\": \"1\",\r\n        \"role\": \"ADMIN\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjpbeyJhdXRob3JpdHkiOiJBRE1JTiJ9XSwiaWF0IjoxNzA0NzkzOTYzLCJleHAiOjE3MDQ3OTU0MDN9.SLNRAC8Neq1Nx8KRM2wDs1UIANex82FNIiMi4J2salI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"delete",
+								"2"
 							]
 						}
 					},
