@@ -58,8 +58,8 @@ class SpringBootApiApplicationTests {
 	}
 	@Test
 	void loginExistentUser() throws Exception {
-		String username = "prueba2@gmail.com";
-		String password = "123456";
+		String username = "prueba@gmail.com";
+		String password = "1";
 		String body = "{\"username\":\"" + username + "\", \"password\":\""
 				+ password + "\"}";
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/auth/login")
@@ -121,5 +121,154 @@ class SpringBootApiApplicationTests {
 		String response2 = result2.getResponse().getContentAsString();
 		assert  response2.length() > 2;
 	}
+	@Test
+	void userCanNOTDeleteProduct() throws Exception {
+		String username = "prueba7@gmail.com";
+		String password = "123456";
+		String body = "{\"username\":\"" + username + "\", \"password\":\""
+				+ password + "\"}";
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/auth/register")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andReturn();
+		String response = result.getResponse().getContentAsString();
+		response = response.replace("{\"token\":\"","");
 
+		String token = response.replace("\"}", "");
+
+		String id = "5";
+		String description = "prueba";
+		String bodyPost = "{\"productId\":\"" + id + "\", \"description\":\""
+				+ description + "\"}";
+		mockMvc.perform(MockMvcRequestBuilders.post("/products/create")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(bodyPost)
+						.header("Authorization", "Bearer " +token))
+				.andExpect(status().isOk()).andReturn();
+		MvcResult result2 = mockMvc.perform(MockMvcRequestBuilders.get("/products/get")
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " +token))
+				.andExpect(status().isOk()).andReturn();
+		String response2 = result2.getResponse().getContentAsString();
+		assert  response2.length() > 2;
+		mockMvc.perform(MockMvcRequestBuilders.delete("/products/delete/"+ id)
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " +token))
+				.andExpect(status().is4xxClientError());
+	}
+	@Test
+	void userCannotCreateOrUpdateOrDeleteUsers() throws Exception {
+		String username = "prueba8@gmail.com";
+		String password = "123456";
+		String body = "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}";
+		MvcResult registerResult = mockMvc.perform(MockMvcRequestBuilders.post("/auth/register")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		String registerResponse = registerResult.getResponse().getContentAsString();
+		String token = registerResponse.replace("{\"token\":\"", "").replace("\"}", "");
+
+		mockMvc.perform(MockMvcRequestBuilders.get("/users/get")
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " + token))
+				.andExpect(status().is4xxClientError());
+
+		String id = "6";
+		String username2 = "prueba";
+		String password2 = "1";
+		String role = "ADMIN";
+		String bodyPost = "{\"id\":\"" + id +
+				"\", \"username\":\"" + username2 +
+				"\", \"password\":\"" + password2 +
+				"\", \"role\":\"" + role +
+				"\"}";
+		mockMvc.perform(MockMvcRequestBuilders.post("/users/create")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(bodyPost)
+						.header("Authorization", "Bearer " + token))
+				.andExpect(status().is4xxClientError());
+
+		mockMvc.perform(MockMvcRequestBuilders.delete("/users/delete/1")
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " + token))
+				.andExpect(status().is4xxClientError());
+	}
+
+	@Test
+	void AdminCanCreateAndUpdateAndDeleteUsers() throws Exception {
+		String username = "admin@gmail.com";
+		String password = "1";
+		String body = "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}";
+		MvcResult registerResult = mockMvc.perform(MockMvcRequestBuilders.post("/auth/login")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		String registerResponse = registerResult.getResponse().getContentAsString();
+		String token = registerResponse.replace("{\"token\":\"", "").replace("\"}", "");
+
+		mockMvc.perform(MockMvcRequestBuilders.get("/users/get")
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " + token))
+				.andExpect(status().isOk()).andReturn();
+
+		String id = "6";
+		String username2 = "prueba";
+		String password2 = "1";
+		String role = "ADMIN";
+		String bodyPost = "{\"id\":\"" + id +
+				"\", \"username\":\"" + username2 +
+				"\", \"password\":\"" + password2 +
+				"\", \"role\":\"" + role +
+				"\"}";
+		mockMvc.perform(MockMvcRequestBuilders.post("/users/create")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(bodyPost)
+						.header("Authorization", "Bearer " + token))
+				.andExpect(status().isOk()).andReturn();
+
+		mockMvc.perform(MockMvcRequestBuilders.delete("/users/delete/6")
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " + token))
+				.andExpect(status().isOk()).andReturn();
+	}
+	//Con admin si puede eliminar producto
+	@Test
+	void AdminCanDeleteProduct() throws Exception {
+		String username = "admin@gmail.com";
+		String password = "1";
+		String body = "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}";
+		MvcResult registerResult = mockMvc.perform(MockMvcRequestBuilders.post("/auth/login")
+						.content(body)
+						.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		String registerResponse = registerResult.getResponse().getContentAsString();
+		String token = registerResponse.replace("{\"token\":\"", "").replace("\"}", "");
+
+		String id = "5";
+		String description = "prueba";
+		String bodyPost = "{\"productId\":\"" + id + "\", \"description\":\""
+				+ description + "\"}";
+		mockMvc.perform(MockMvcRequestBuilders.post("/products/create")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(bodyPost)
+						.header("Authorization", "Bearer " +token))
+				.andExpect(status().isOk()).andReturn();
+		MvcResult result2 = mockMvc.perform(MockMvcRequestBuilders.get("/products/get")
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " +token))
+				.andExpect(status().isOk()).andReturn();
+
+		String response2 = result2.getResponse().getContentAsString();
+		assert  response2.length() > 2;
+		mockMvc.perform(MockMvcRequestBuilders.delete("/products/delete/"+ id)
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("Authorization", "Bearer " +token))
+				.andExpect(status().isOk()).andReturn();
+	}
 }

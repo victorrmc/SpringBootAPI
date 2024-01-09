@@ -1,6 +1,7 @@
 package com.bitboxer2.SpringBootAPI.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -10,6 +11,8 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/users/get")
     public List<User> getUsers(){
@@ -18,6 +21,7 @@ public class UserController {
 
     @PostMapping("/users/create")
     public String createUser(@RequestBody User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.createUser(user);
         return "The User was created correctly";
     }
